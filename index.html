@@ -573,8 +573,8 @@
 
       <div class="pix-box">
         <div><strong>Pagamento via PIX:</strong></div>
-        <div>Chave (CPF): <span class="pix-key" id="chavePix">01342297628</span></div>
-        <div>Titular: Michel Guimarães - Mercado Pago</div>
+        <div>Chave: <span class="pix-key" id="chavePix">Carregando chave...</span></div>
+        <div id="boxTitularPix">Titular: Carregando titular...</div>
         <button class="btn-copy" onclick="copiarPix()">📋 Copiar Chave PIX</button>
       </div>
     </div>
@@ -779,9 +779,11 @@
     throw new Error("Execução bloqueada: Domínio não autorizado.");
   }
 
-  const SEU_NUMERO_WHATSAPP = "5531987520694";
   const STORAGE_KEY = "bolao_independencia_2026_registro";
   const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzw2VuE6-6lQmTUYoStS2OAoKxO5emAqZ36BIY8UzdcY5kAQ-ynIs-xjfaw-H9Lr_4CpA/exec";
+
+  // Armazena o WhatsApp retornado pela planilha
+  let whatsappOrganizador = "";
 
   let totalJogos = 4;
   let indexAtual = 0;
@@ -823,6 +825,20 @@
         vagasA = data.vagasA;
         vagasB = data.vagasB;
         vagasCarregadas = true;
+
+        // Atualiza chave PIX, titular e WhatsApp sob demanda
+        if (data.config) {
+          if (data.config.pixChave) {
+            document.getElementById('chavePix').textContent = data.config.pixChave;
+          }
+          if (data.config.pixTitular) {
+            document.getElementById('boxTitularPix').textContent = `Titular: ${data.config.pixTitular}`;
+          }
+          if (data.config.whatsapp) {
+            whatsappOrganizador = data.config.whatsapp;
+          }
+        }
+
         atualizarInfoDivisao();
       }
     } catch (e) {
@@ -1265,7 +1281,6 @@
       jogos: listaFormatadaJogos
     };
 
-    // Disparo em segundo plano garantido pelo navegador com keepalive
     try {
       fetch(URL_APPS_SCRIPT, {
         method: "POST",
@@ -1289,16 +1304,16 @@
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dadosParaSalvar));
 
-    // ATIVA IMEDIATAMENTE A TELA DE BLOQUEADO COM O RESUMO
     renderizarTelaBloqueada(dadosParaSalvar);
 
-    // ABRE O WHATSAPP INSTANTANEAMENTE EM UMA NOVA GUIA/JANELA
-    const url = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    const destinoWhats = whatsappOrganizador || "5531987520694";
+    const url = `https://wa.me/${destinoWhats}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   }
 
   function abrirWhatsAppNovamente() {
-    window.open(`https://wa.me/${SEU_NUMERO_WHATSAPP}`, '_blank');
+    const destinoWhats = whatsappOrganizador || "5531987520694";
+    window.open(`https://wa.me/${destinoWhats}`, '_blank');
   }
 
   checarDesbloqueioPorLink();
