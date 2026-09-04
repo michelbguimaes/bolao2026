@@ -742,19 +742,28 @@
 </div>
 
 <script>
-// BLOQUEIO DE ARQUIVO LOCAL ENCAMINHADO (Impede abrir como arquivo baixado)
-if (window.location.protocol === 'file:' || window.location.origin === 'null') {
-  document.body.innerHTML = `
-    <div style="font-family: sans-serif; text-align: center; padding: 40px 20px; color: #b91c1c;">
-      <h2>⚠️ Acesso Não Autorizado</h2>
-      <p style="color: #334155; font-size: 0.95rem;">
-        Este formulário não pode ser aberto como arquivo baixado ou encaminhado.<br><br>
-        Acesse exclusivamente pelo <strong>link oficial</strong> fornecido pelo organizador.
-      </p>
-    </div>
-  `;
-  throw new Error("Execução local bloqueada.");
-}
+// ==========================================
+  // CAMADA 2: TRAVA DE DOMÍNIO OFICIAL
+  // ==========================================
+  const DOMINIO_AUTORIZADO = "seu-usuario.github.io"; // <-- Coloque o seu domínio do GitHub Pages aqui
+
+  // Se o site NÃO estiver rodando no GitHub Pages oficial (e nem em localhost de teste)
+  if (window.location.hostname !== DOMINIO_AUTORIZADO && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+    document.body.innerHTML = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 40px 20px; color: #991b1b; background: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
+        <h2 style="margin: 0 0 10px 0; color: #0f172a;">Acesso Não Autorizado</h2>
+        <p style="color: #475569; font-size: 0.95rem; max-width: 360px; line-height: 1.5;">
+          Este formulário foi copiado ou aberto fora do endereço oficial do bolão e teve o funcionamento bloqueado.
+        </p>
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px;">
+          Acesse exclusivamente pelo link oficial enviado pelo organizador.
+        </p>
+      </div>
+    `;
+    // Interrompe a execução de todo o restante do script
+    throw new Error("Execução bloqueada: Domínio não autorizado.");
+  }
 
   const SEU_NUMERO_WHATSAPP = "5531987520694";
   const STORAGE_KEY = "bolao_independencia_2026_registro";
