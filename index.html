@@ -756,8 +756,6 @@
 <script>
   // ========================================================
   // TRAVA DE SEGURANÇA BLINDADA:
-  // Permite rodar no GitHub Pages (*.github.io) ou localhost.
-  // Bloqueia se for arquivo baixado (file://) ou em outro domínio.
   // ========================================================
   const hostAtual = window.location.hostname;
   const isLocal = hostAtual === "localhost" || hostAtual === "127.0.0.1";
@@ -782,8 +780,8 @@
   const STORAGE_KEY = "bolao_independencia_2026_registro";
   const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzw2VuE6-6lQmTUYoStS2OAoKxO5emAqZ36BIY8UzdcY5kAQ-ynIs-xjfaw-H9Lr_4CpA/exec";
 
-  // Armazena o WhatsApp retornado pela planilha
   let whatsappOrganizador = "";
+  let tokenSessao = "";
 
   let totalJogos = 4;
   let indexAtual = 0;
@@ -825,8 +823,11 @@
         vagasA = data.vagasA;
         vagasB = data.vagasB;
         vagasCarregadas = true;
+        
+        if (data.tokenSessao) {
+          tokenSessao = data.tokenSessao;
+        }
 
-        // Atualiza chave PIX, titular e WhatsApp sob demanda
         if (data.config) {
           if (data.config.pixChave) {
             document.getElementById('chavePix').textContent = data.config.pixChave;
@@ -1274,6 +1275,7 @@
     msg += `\nSegue em anexo o comprovante do PIX para validação.`;
 
     const dadosEnvio = {
+      token: tokenSessao, // Envia a assinatura dinâmica exigida pelo Apps Script
       nome: nome,
       telefone: telefone,
       cotas: cotas,
