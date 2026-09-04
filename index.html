@@ -742,13 +742,16 @@
 </div>
 
 <script>
-// ==========================================
-  // CAMADA 2: TRAVA DE DOMÍNIO OFICIAL
-  // ==========================================
-  const DOMINIO_AUTORIZADO = "michelbguimaes.github.io"; // <-- Coloque o seu domínio do GitHub Pages aqui
+  // ========================================================
+  // TRAVA DE SEGURANÇA BLINDADA:
+  // Permite rodar no GitHub Pages (*.github.io) ou localhost.
+  // Bloqueia se for arquivo baixado (file://) ou em outro domínio.
+  // ========================================================
+  const hostAtual = window.location.hostname;
+  const isLocal = hostAtual === "localhost" || hostAtual === "127.0.0.1";
+  const isGitHubPages = hostAtual.endsWith("github.io");
 
-  // Se o site NÃO estiver rodando no GitHub Pages oficial (e nem em localhost de teste)
-  if (window.location.hostname !== DOMINIO_AUTORIZADO && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+  if (!isLocal && !isGitHubPages) {
     document.body.innerHTML = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 40px 20px; color: #991b1b; background: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
@@ -761,7 +764,6 @@
         </p>
       </div>
     `;
-    // Interrompe a execução de todo o restante do script
     throw new Error("Execução bloqueada: Domínio não autorizado.");
   }
 
@@ -776,7 +778,6 @@
   let cliquesDesbloqueio = 0;
   let timerCliques = null;
 
-  // VARIÁVEIS DE VAGAS EM TEMPO REAL
   let vagasA = 28;
   let vagasB = 28;
   let vagasCarregadas = false;
@@ -802,7 +803,6 @@
   const chkDividirGrupos = document.getElementById('chkDividirGrupos');
   const txtExplicacaoDivisao = document.getElementById('txtExplicacaoDivisao');
 
-  // CONSULTA EM TEMPO REAL QUANTAS COTAS RESTAM NA PLANILHA
   async function consultarVagasEmTempoReal() {
     try {
       const resp = await fetch(URL_APPS_SCRIPT);
@@ -959,27 +959,31 @@
     } catch(e) {}
   }
 
+  function renderizarTelaBloqueada(dados) {
+    telaRegras.classList.add('hidden');
+    telaDados.classList.add('hidden');
+    telaPalpites.classList.add('hidden');
+    telaRevisao.classList.add('hidden');
+    telaBloqueada.classList.remove('hidden');
+
+    let html = `<strong>Participante:</strong> ${dados.nome}<br>`;
+    if (dados.telefone) html += `<strong>WhatsApp:</strong> ${dados.telefone}<br>`;
+    html += `<strong>Cotas:</strong> ${dados.cotas} (${dados.totalJogos} jogos)<br>`;
+    if (dados.divisaoTexto) html += `<strong>Grupos:</strong> ${dados.divisaoTexto}<br>`;
+    html += `<hr style="border:0; border-top:1px solid #ddd; margin:8px 0;">`;
+    dados.jogos.forEach((jg, i) => {
+      html += `<strong>J${i+1 < 10 ? '0' : ''}${i+1}:</strong> ${jg}<br>`;
+    });
+
+    document.getElementById('blocoResumoSalvo').innerHTML = html;
+  }
+
   function checarEnvioPrevio() {
     const dadosSalvos = localStorage.getItem(STORAGE_KEY);
     if (dadosSalvos) {
       try {
         const parsed = JSON.parse(dadosSalvos);
-        telaRegras.classList.add('hidden');
-        telaDados.classList.add('hidden');
-        telaPalpites.classList.add('hidden');
-        telaRevisao.classList.add('hidden');
-        telaBloqueada.classList.remove('hidden');
-
-        let html = `<strong>Participante:</strong> ${parsed.nome}<br>`;
-        if (parsed.telefone) html += `<strong>WhatsApp:</strong> ${parsed.telefone}<br>`;
-        html += `<strong>Cotas:</strong> ${parsed.cotas} (${parsed.totalJogos} jogos)<br>`;
-        if (parsed.divisaoTexto) html += `<strong>Grupos:</strong> ${parsed.divisaoTexto}<br>`;
-        html += `<hr style="border:0; border-top:1px solid #ddd; margin:8px 0;">`;
-        parsed.jogos.forEach((jg, i) => {
-          html += `<strong>J${i+1 < 10 ? '0' : ''}${i+1}:</strong> ${jg}<br>`;
-        });
-
-        document.getElementById('blocoResumoSalvo').innerHTML = html;
+        renderizarTelaBloqueada(parsed);
         return true;
       } catch (e) {
         localStorage.removeItem(STORAGE_KEY);
@@ -1214,10 +1218,6 @@
   }
 
   function confirmarEEnviarWhatsApp() {
-    const btnConfirmar = document.querySelector("#telaRevisao .btn-whatsapp");
-    btnConfirmar.disabled = true;
-    btnConfirmar.textContent = "Abrindo WhatsApp...";
-
     const nome = inputNome.value.trim();
     const telefone = inputTelefone.value.trim();
     const cotas = selectCotas.value;
@@ -1261,12 +1261,11 @@
         keepalive: true,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosEnvio)
-      }).catch(err => console.warn("Envio assíncrono iniciado:", err));
+      }).catch(err => console.warn("Envio assíncrono:", err));
     } catch (e) {
       console.warn("Disparo:", e);
     }
 
-    // Salva localmente de imediato
     const dadosParaSalvar = {
       nome: nome,
       telefone: telefone,
@@ -1278,7 +1277,10 @@
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dadosParaSalvar));
 
-    // Abre o WhatsApp imediatamente sem espera
+    // ATIVA IMEDIATAMENTE A TELA DE BLOQUEADO COM O RESUMO
+    renderizarTelaBloqueada(dadosParaSalvar);
+
+    // ABRE O WHATSAPP INSTANTANEAMENTE
     const url = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`;
     window.location.href = url;
   }
