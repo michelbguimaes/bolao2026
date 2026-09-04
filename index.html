@@ -1280,13 +1280,13 @@
     // ATIVA IMEDIATAMENTE A TELA DE BLOQUEADO COM O RESUMO
     renderizarTelaBloqueada(dadosParaSalvar);
 
-    // ABRE O WHATSAPP INSTANTANEAMENTE
+    // ABRE O WHATSAPP INSTANTANEAMENTE EM UMA NOVA GUIA/JANELA
     const url = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`;
-    window.location.href = url;
+    window.open(url, '_blank');
   }
 
   function abrirWhatsAppNovamente() {
-    window.location.href = `https://wa.me/${SEU_NUMERO_WHATSAPP}`;
+    window.open(`https://wa.me/${SEU_NUMERO_WHATSAPP}`, '_blank'');
   }
 
   checarDesbloqueioPorLink();
