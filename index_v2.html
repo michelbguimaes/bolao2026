@@ -998,10 +998,14 @@
                </div>`;
       html += `
         <div class="toggle-dividir">
-          <button type="button" class="toggle-btn ${!modoDividir ? 'active' : ''}" onclick="setModoDividir(false)">Não, todas num grupo</button>
           <button type="button" class="toggle-btn ${modoDividir ? 'active' : ''}" onclick="setModoDividir(true)">Sim, dividir</button>
+          <button type="button" class="toggle-btn ${!modoDividir ? 'active' : ''}" onclick="setModoDividir(false)">Não, todas num grupo</button>
         </div>
       `;
+      
+      if (modoDividir) {
+          html += `<div style="font-size: 0.85rem; color: #15803d; margin-bottom: 8px; font-weight: 600;">👉 Marque os grupos que queira participar:</div>`;
+      }
       
       html += `<div class="grupos-grid">`;
       gruposDisponiveis.forEach(g => {
@@ -1020,7 +1024,7 @@
         const cotasRestantes = cotas - alocacaoEscolhida.length;
         html += `
           <div class="alocacao-extra">
-            <div class="alocacao-extra-titulo">📌 ${alocacaoEscolhida.length} de ${cotas} cotas alocadas. Escolha onde colocar a(s) ${cotasRestantes} cota(s) extra(s):</div>
+            <div class="alocacao-extra-titulo">📌 Você tem ${cotasRestantes} cota(s) restante(s). Caso queira que fique em um dos grupos já escolhidos, selecione o grupo abaixo:</div>
             <div class="alocacao-extra-opcoes">
         `;
         alocacaoEscolhida.forEach(a => {
