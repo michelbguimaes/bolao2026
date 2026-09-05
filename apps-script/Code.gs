@@ -441,3 +441,57 @@ function resetarEPopularAdmin() {
     sheet.getRange(2, 1, linhasAdmin.length, 7).setValues(linhasAdmin);
   });
 }
+
+function criarNovosGruposFaltantes() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheetConfig = ss.getSheetByName("Config");
+
+  let numGrupos = 2;
+  if (sheetConfig) {
+    const valB5 = parseInt(sheetConfig.getRange("B5").getValue(), 10);
+    if (!isNaN(valB5) && valB5 > 0) {
+      numGrupos = valB5;
+    }
+  }
+
+  const grupos = [];
+  for (let i = 0; i < numGrupos; i++) {
+    grupos.push("Grupo " + String.fromCharCode(65 + i));
+  }
+  
+  grupos.forEach(nomeAba => {
+    let sheet = ss.getSheetByName(nomeAba);
+    // Se a aba JÁ EXISTE, não fazemos nada! Assim preservamos os dados de quem já jogou.
+    if (sheet) {
+      return; 
+    }
+    
+    // Se não existe, criamos a aba novinha e populamos com o admin
+    sheet = ss.insertSheet(nomeAba);
+
+    const cabecalho = [
+      "Nº Jogo (1-120)",
+      "Nº da Cota (1-30)",
+      "Nome Participante",
+      "WhatsApp",
+      "Dezenas Formatadas",
+      "Data/Hora Registro",
+      "Status Pagamento (PIX)"
+    ];
+    sheet.appendRow(cabecalho);
+    sheet.getRange("A1:G1").setFontWeight("bold").setBackground("#e2e8f0");
+
+    const timestampAdmin = Utilities.formatDate(new Date(), "America/Sao_Paulo", "dd/MM/yyyy HH:mm:ss");
+    const linhasAdmin = [
+      [1, "Cota 01", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [2, "Cota 01", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [3, "Cota 01", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [4, "Cota 01", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [5, "Cota 02", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [6, "Cota 02", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [7, "Cota 02", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"],
+      [8, "Cota 02", "Michel Guimarães", "(31) 98752-0694", "", timestampAdmin, "Confirmado (Organizador)"]
+    ];
+    sheet.getRange(2, 1, linhasAdmin.length, 7).setValues(linhasAdmin);
+  });
+}
