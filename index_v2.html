@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Bolão Lotofácil da Independência</title>
+  
+  <!-- Ícone da aba do navegador -->
+  <link rel="icon" href="logo.ico" type="image/x-icon">
+  
+  <!-- Pré-visualização do card no WhatsApp e Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bolão Lotofácil da Independência 2026">
+  <meta property="og:description" content="Faça seus palpites e participe do bolão oficial!">
+  <meta property="og:image" content="https://michelbguimaes.github.io/bolao2026/banner.png">
+  <meta property="og:url" content="https://michelbguimaes.github.io/bolao2026">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --success: #16a34a;
+      --warning-bg: #fffbeb;
+      --warning-border: #fef3c7;
+      --warning-text: #92400e;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      color: var(--text);
+    }
+
+    .container {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      max-width: 440px;
+      width: 100%;
+      padding: 14px;
+      position: relative;
+    }
+
+    h2 {
+      margin: 0 0 4px 0;
+      font-size: 1.15rem;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .badge-data {
+      display: table;
+      margin: 0 auto 10px auto;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .hidden { display: none !important; }
+
+    /* REGRAS */
+    .rules-card {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .rules-card ul {
+      margin: 6px 0;
+      padding-left: 18px;
+    }
+
+    .rules-card li {
+      margin-bottom: 5px;
+    }
+
+    .pix-box {
+      background: #e2e8f0;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+    }
+
+    .pix-key {
+      font-weight: bold;
+      color: #0f172a;
+      font-family: monospace;
+      font-size: 0.95rem;
+      word-break: break-all;
+    }
+
+    .btn-copy {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.76rem;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    /* BOTÕES */
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #334155;
+      border: none;
+      padding: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    /* FORMULÁRIO */
+    label {
+      font-weight: 600;
+      font-size: 0.82rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"], input[type="tel"], select {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    
+    /* SELETOR DE GRUPOS */
+    #containerSeletorGrupos {
+      margin-bottom: 14px;
+    }
+    .seletor-grupos-header {
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toggle-dividir {
+      display: flex;
+      background: #e2e8f0;
+      border-radius: 8px;
+      padding: 2px;
+      margin-bottom: 10px;
+    }
+    .toggle-btn {
+      flex: 1;
+      text-align: center;
+      padding: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+    }
+    .toggle-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .grupos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .grupo-badge {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .grupo-badge.selected {
+      background: #eff6ff;
+      border-color: var(--primary);
+    }
+    .grupo-badge.disabled {
+      background: #f1f5f9;
+      opacity: 0.6;
+      cursor: not-allowed;
+      border-color: var(--border);
+    }
+    .grupo-nome {
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+    .grupo-badge.selected .grupo-nome {
+      color: var(--primary-dark);
+    }
+    .grupo-vagas {
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+    .grupo-badge.selected .grupo-vagas {
+      color: var(--primary);
+    }
+    .alocacao-extra {
+      margin-top: 10px;
+      background: #fffbeb;
+      border: 1px dashed #fcd34d;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.82rem;
+    }
+    .alocacao-extra-titulo {
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .alocacao-extra-opcoes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .btn-aloc-extra {
+      background: white;
+      border: 1px solid #fcd34d;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: #92400e;
+      font-weight: bold;
+    }
+    .btn-aloc-extra.active {
+      background: #f59e0b;
+      color: white;
+      border-color: #f59e0b;
+    }
+
+    /* BLOCO DE DIVISÃO DE GRUPOS */
+    .dividir-grupos-container {
+      margin-bottom: 14px;
+    }
+
+    .dividir-grupos-box {
+      background: #f0fdf4;
+      border: 1.5px dashed #22c55e;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .dividir-grupos-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .dividir-grupos-text {
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: #166534;
+      flex: 1;
+    }
+
+    .dividir-grupos-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .dividir-grupos-header strong {
+      font-size: 0.88rem;
+    }
+
+    .btn-ajuda-duvida {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: bold;
+      padding: 2px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+    }
+
+    /* MODAL DE EXPLICAÇÃO */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: popIn 0.2s ease-out;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #94a3b8;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .modal-body {
+      font-size: 0.85rem;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    .card-exemplo-grupo {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .item-vantagem {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+
+    /* TELA 3 COMPACTADA */
+    .user-info-strip {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-text-edit {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.76rem;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .btn-surpresinha-geral {
+      background: #e0e7ff;
+      color: #3730a3;
+      border: 1.5px dashed #6366f1;
+      padding: 6px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .selector-container {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .nav-btn {
+      background: #e2e8f0;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-title {
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .games-grid {
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      padding-bottom: 3px;
+      scrollbar-width: none;
+    }
+
+    .games-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .game-badge {
+      flex: 0 0 auto;
+      padding: 5px 9px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .game-badge.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .game-badge.done {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .game-badge.active.done {
+      background: var(--success);
+      color: white;
+    }
+
+    .volante-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+    }
+
+    .volante-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .btn-action-small {
+      background: #e0e7ff;
+      color: #3730a3;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .num-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      margin-bottom: 6px;
+    }
+
+    .num-btn {
+      aspect-ratio: 1;
+      max-width: 48px;
+      margin: 0 auto;
+      border: 1.5px solid var(--border);
+      background: white;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.1s transform;
+    }
+
+    .num-btn:active {
+      transform: scale(0.92);
+    }
+
+    .num-btn.selected {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .status-counter {
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    /* REVISÃO */
+    .alerta-aviso {
+      background: var(--warning-bg);
+      border: 1px solid #fcd34d;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      color: var(--warning-text);
+      line-height: 1.4;
+    }
+
+    .alerta-aviso strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.85rem;
+    }
+
+    .resumo-scroll {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 14px;
+      max-height: 220px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+
+    .btn-whatsapp {
+      background-color: var(--success);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    /* BLOQUEIO */
+    .lock-box {
+      text-align: center;
+      padding: 6px 0;
+    }
+    .badge-bloqueado {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+    }
+    .titulo-bloqueado {
+      user-select: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ================= TELA 1: REGRAS ================= -->
+  <div id="telaRegras">
+    <h2>Bolão Lotofácil da Independência</h2>
+    <div class="badge-data">📅 Sorteio Oficial: 15/09/2026</div>
+
+    <div class="rules-card">
+      <strong>Regras e Funcionamento:</strong>
+      <ul>
+        <li><strong>Data do sorteio:</strong> 15/09/2026 (não acumula).</li>
+        <li><strong>Total de cotas:</strong> 30 cotas por grupo.</li>
+        <li><strong>Valor por cota:</strong> R$ 15,00.</li>
+        <li><strong>Total por grupo:</strong> 120 jogos simples (15 números cada).</li>
+        <li><strong>Seus palpites:</strong> Cada cota dá direito a escolher 4 jogos simples de 15 números (ou Surpresinha).</li>
+        <li><strong>Divisão de prêmios:</strong> O prêmio líquido obtido pelo grupo será dividido igualmente entre as cotas daquele grupo.</li>
+        <li><strong>Comprovação:</strong> Bilhetes escaneados e a planilha oficial serão enviados antes do sorteio.</li>
+      </ul>
+
+      <div class="pix-box">
+        <div><strong>Pagamento via PIX:</strong></div>
+        <div>Chave: <span class="pix-key" id="chavePix">Carregando chave...</span></div>
+        <div id="boxTitularPix">Titular: Carregando titular...</div>
+        <button class="btn-copy" onclick="copiarPix()">📋 Copiar Chave PIX</button>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="irParaDados()">De acordo, prosseguir</button>
+  </div>
+
+  <!-- ================= TELA 2: IDENTIFICAÇÃO ================= -->
+  <div id="telaDados" class="hidden">
+    <h2>Seus Dados</h2>
+    <div class="badge-data">Passo 1 de 2: Identificação</div>
+
+    <label for="nome">Nome Completo:</label>
+    <input type="text" id="nome" placeholder="Digite seu nome completo" oninput="validarEtapaDados()">
+
+    <label for="telefone">WhatsApp com DDD:</label>
+    <input type="tel" id="telefone" placeholder="(31) 99999-9999" maxlength="15" oninput="mascaraTelefone(this); validarEtapaDados();">
+
+    <label for="cotas">Quantidade de Cotas:</label>
+    <select id="cotas" onchange="alterarQtdCotas()">
+      <option value="1">1 Cota (4 jogos - R$ 15,00)</option>
+      <option value="2">2 Cotas (8 jogos - R$ 30,00)</option>
+      <option value="3">3 Cotas (12 jogos - R$ 45,00)</option>
+      <option value="4">4 Cotas (16 jogos - R$ 60,00)</option>
+    </select>
+
+    <div id="containerSeletorGrupos"></div>
+
+    <button class="btn-primary" id="btnAvancarPalpites" disabled onclick="irParaPalpites()">
+      Avançar para os Palpites →
+    </button>
+    <button class="btn-secondary" onclick="voltarParaRegras()">
+      ← Voltar para as Regras
+    </button>
+  </div>
+
+  <!-- ================= TELA 3: PALPITES ================= -->
+  <div id="telaPalpites" class="hidden">
+    <h2>Escolha as Dezenas</h2>
+    <div class="badge-data">Passo 2 de 2: Seus Jogos</div>
+
+    <div class="user-info-strip">
+      <div>
+        <strong id="lblResumoParticipante">Nome</strong><br>
+        <span id="lblResumoCotas" style="color: var(--text-muted);">1 Cota (4 jogos)</span>
+      </div>
+      <button class="btn-text-edit" onclick="voltarParaDados()">Alterar dados</button>
+    </div>
+
+    <button type="button" class="btn-surpresinha-geral" onclick="gerarTodosSurpresinha()">
+      🎲 Gerar TODOS os jogos em Surpresinha
+    </button>
+
+    <div class="selector-container">
+      <div class="nav-bar">
+        <button class="nav-btn" onclick="jogoAnterior()">‹</button>
+        <span class="nav-title" id="lblJogoAtual">Jogo 01 de 04</span>
+        <button class="nav-btn" onclick="proximoJogo()">›</button>
+      </div>
+      <div class="games-grid" id="gridAtalhos"></div>
+    </div>
+
+    <div class="volante-card">
+      <div class="volante-header">
+        <span style="font-weight: 600; font-size: 0.85rem;" id="lblIndicadorGrupo">Cartela de Números</span>
+        <div>
+          <button class="btn-action-small" onclick="gerarSurpresinhaAtual()">🎲 Este jogo</button>
+          <button class="btn-action-small" style="background: #fee2e2; color: #991b1b;" onclick="limparJogoAtual()">Limpar</button>
+        </div>
+      </div>
+
+      <div class="num-grid" id="gradeNumeros"></div>
+      <div class="status-counter" id="contadorDezenas">0 / 15 marcadas</div>
+    </div>
+
+    <button class="btn-primary" id="btnIrRevisao" disabled onclick="abrirRevisao()">Revisar Palpites</button>
+  </div>
+
+  <!-- ================= TELA 4: REVISÃO ANTES DO ENVIO ================= -->
+  <div id="telaRevisao" class="hidden">
+    <h2>Revisão dos Palpites</h2>
+    <div class="badge-data">📅 Sorteio: 15/09/2026</div>
+
+    <div class="alerta-aviso">
+      <strong>⚠️ ATENÇÃO ANTES DE ENVIAR:</strong>
+      • Após confirmar, <u>não será possível enviar novamente</u> por este formulário.<br>
+      • Os jogos só serão <strong>validados e registrados mediante o envio do comprovante do PIX</strong> no WhatsApp.
+    </div>
+
+    <div class="resumo-scroll" id="corpoRevisao"></div>
+
+    <button class="btn-whatsapp" onclick="confirmarEEnviarWhatsApp()">
+      ✓ Confirmar e Enviar via WhatsApp
+    </button>
+    <button class="btn-secondary" onclick="voltarParaPalpites()">
+      ✏️ Voltar e Corrigir Palpites
+    </button>
+  </div>
+
+  <!-- ================= TELA 5: JÁ ENVIADO / BLOQUEADO ================= -->
+  <div id="telaBloqueada" class="hidden">
+    <div class="lock-box">
+      <div class="badge-bloqueado">✓ Participação Registrada</div>
+      <h2 id="tituloBloqueado" class="titulo-bloqueado" style="margin: 4px 0;" onclick="tratarCliquesDesbloqueio()">Palpites Já Enviados!</h2>
+      <div class="badge-data">📅 Sorteio: 15/09/2026</div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+        Seus palpites já foram registrados neste aparelho. Caso precise fazer alguma alteração, entre em contato direto pelo WhatsApp.
+      </p>
+
+      <div class="resumo-scroll" id="blocoResumoSalvo"></div>
+
+      <button class="btn-primary" onclick="abrirWhatsAppNovamente()">
+        💬 Abrir Conversa no WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EXPLICAÇÃO ================= -->
+  <div id="modalExplicacao" class="modal-overlay hidden" onclick="fecharModalPeloFundo(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🎯 Como funciona a divisão?</h3>
+        <button class="btn-close-modal" onclick="fecharModalExplicacao()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="margin: 0 0 8px 0; font-size: 0.85rem;">
+          Os grupos disponíveis são <u>bolões totalmente independentes</u>, com jogos e bilhetes diferentes.
+        </p>
+
+        <div class="card-exemplo-grupo">
+          <div class="item-vantagem">
+            <span>🎟️</span>
+            <div>
+              <strong>Jogos separados:</strong> Em vez de colocar todas as cotas em um único bolão, você pode escolher entrar em bolões diferentes ao mesmo tempo, aumentando suas chances de ganhar.
+            </div>
+          </div>
+
+          <div class="item-vantagem">
+            <span>⚠️</span>
+            <div>
+              <strong>Premiação individual por grupo:</strong><br>
+              • Cada grupo tem sua própria premiação e rateio entre os membros daquele grupo.<br>
+              <em style="font-size: 0.78rem; color: #b91c1c;">(Quem não tem cota no grupo sorteado NÃO recebe nada daquele grupo!)</em>
+            </div>
+          </div>
+
+          <div class="item-vantagem" style="margin-bottom: 0;">
+            <span>🚀</span>
+            <div>
+              <strong>Sorte dupla:</strong> Dividindo suas cotas, se mais de um grupo pontuar, você recebe a parte correspondente às cotas que tiver em cada um deles!
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="padding: 9px; font-size: 0.88rem;" onclick="fecharModalExplicacao()">
+          Entendido!
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ========================================================
+  // TRAVA DE SEGURANÇA BLINDADA:
+  // ========================================================
+  const hostAtual = window.location.hostname;
+  const isLocal = hostAtual === "localhost" || hostAtual === "127.0.0.1";
+  const isGitHubPages = hostAtual.endsWith("github.io");
+
+  if (!isLocal && !isGitHubPages) {
+    document.body.innerHTML = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 40px 20px; color: #991b1b; background: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
+        <h2 style="margin: 0 0 10px 0; color: #0f172a;">Acesso Não Autorizado</h2>
+        <p style="color: #475569; font-size: 0.95rem; max-width: 360px; line-height: 1.5;">
+          Este formulário foi copiado ou aberto fora do endereço oficial do bolão e teve o funcionamento bloqueado.
+        </p>
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px;">
+          Acesse exclusivamente pelo link oficial enviado pelo organizador.
+        </p>
+      </div>
+    `;
+    throw new Error("Execução bloqueada: Domínio não autorizado.");
+  }
+
+  const STORAGE_KEY = "bolao_independencia_2026_registro";
+  const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzw2VuE6-6lQmTUYoStS2OAoKxO5emAqZ36BIY8UzdcY5kAQ-ynIs-xjfaw-H9Lr_4CpA/exec";
+
+  let whatsappOrganizador = "";
+  let tokenSessao = "";
+
+  let totalJogos = 4;
+  let indexAtual = 0;
+  let jogos = Array.from({ length: totalJogos }, () => new Set());
+
+  let cliquesDesbloqueio = 0;
+  let timerCliques = null;
+
+  let gruposDisponiveis = [];
+  let alocacaoEscolhida = [];
+  let modoDividir = false;
+  let grupoExtraEscolhido = "";
+  let vagasCarregadas = false;
+
+  const telaRegras = document.getElementById('telaRegras');
+  const telaDados = document.getElementById('telaDados');
+  const telaPalpites = document.getElementById('telaPalpites');
+  const telaRevisao = document.getElementById('telaRevisao');
+  const telaBloqueada = document.getElementById('telaBloqueada');
+  const modalExplicacao = document.getElementById('modalExplicacao');
+
+  const gradeNumeros = document.getElementById('gradeNumeros');
+  const gridAtalhos = document.getElementById('gridAtalhos');
+  const contadorDezenas = document.getElementById('contadorDezenas');
+  const lblJogoAtual = document.getElementById('lblJogoAtual');
+  const lblIndicadorGrupo = document.getElementById('lblIndicadorGrupo');
+  const btnAvancarPalpites = document.getElementById('btnAvancarPalpites');
+  const btnIrRevisao = document.getElementById('btnIrRevisao');
+  const inputNome = document.getElementById('nome');
+  const inputTelefone = document.getElementById('telefone');
+  const selectCotas = document.getElementById('cotas');
+  
+
+  async function consultarVagasEmTempoReal() {
+    try {
+      const resp = await fetch(URL_APPS_SCRIPT);
+      const data = await resp.json();
+      if (data && data.status === "sucesso") {
+        gruposDisponiveis = data.grupos || [];
+        vagasCarregadas = true;
+        
+        if (data.tokenSessao) {
+          tokenSessao = data.tokenSessao;
+        }
+
+        if (data.config) {
+          if (data.config.pixChave) {
+            document.getElementById('chavePix').textContent = data.config.pixChave;
+          }
+          if (data.config.pixTitular) {
+            document.getElementById('boxTitularPix').textContent = `Titular: ${data.config.pixTitular}`;
+          }
+          if (data.config.whatsapp) {
+            whatsappOrganizador = data.config.whatsapp;
+          }
+        }
+
+        renderizarSeletorGrupos();
+      }
+    } catch (e) {
+      console.warn("Não foi possível carregar vagas em tempo real, usando padrão:", e);
+    }
+  }
+
+  function renderizarSeletorGrupos() {
+    const container = document.getElementById('containerSeletorGrupos');
+    if (!container) return;
+    const cotas = parseInt(selectCotas.value, 10);
+    
+    let html = '';
+    
+    if (cotas === 1) {
+      html += `<div class="seletor-grupos-header">
+                 <span>🎯 Em qual grupo quer entrar?</span>
+                 <button type="button" class="btn-ajuda-duvida" onclick="abrirModalExplicacao(event)">❓ Como funciona?</button>
+               </div>`;
+      html += `<div class="grupos-grid">`;
+      gruposDisponiveis.forEach(g => {
+        const disabled = g.vagas === 0;
+        const selected = alocacaoEscolhida.some(a => a.grupo === g.nome);
+        html += `
+          <div class="grupo-badge ${selected ? 'selected' : ''} ${disabled ? 'disabled' : ''}" onclick="selecionarGrupo('${g.nome}', ${disabled})">
+            <span class="grupo-nome">${g.nome}</span>
+            <span class="grupo-vagas">${disabled ? 'Esgotado' : g.vagas + ' vagas'}</span>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="seletor-grupos-header">
+                 <span>🎯 Distribuir cotas em grupos diferentes?</span>
+                 <button type="button" class="btn-ajuda-duvida" onclick="abrirModalExplicacao(event)">❓ Como funciona?</button>
+               </div>`;
+      html += `
+        <div class="toggle-dividir">
+          <button type="button" class="toggle-btn ${!modoDividir ? 'active' : ''}" onclick="setModoDividir(false)">Não, todas num grupo</button>
+          <button type="button" class="toggle-btn ${modoDividir ? 'active' : ''}" onclick="setModoDividir(true)">Sim, dividir</button>
+        </div>
+      `;
+      
+      html += `<div class="grupos-grid">`;
+      gruposDisponiveis.forEach(g => {
+        const disabled = g.vagas === 0;
+        const selected = alocacaoEscolhida.some(a => a.grupo === g.nome);
+        html += `
+          <div class="grupo-badge ${selected ? 'selected' : ''} ${disabled ? 'disabled' : ''}" onclick="selecionarGrupo('${g.nome}', ${disabled})">
+            <span class="grupo-nome">${g.nome}</span>
+            <span class="grupo-vagas">${disabled ? 'Esgotado' : g.vagas + ' vagas'}</span>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      
+      if (modoDividir && alocacaoEscolhida.length > 0 && alocacaoEscolhida.length < cotas) {
+        const cotasRestantes = cotas - alocacaoEscolhida.length;
+        html += `
+          <div class="alocacao-extra">
+            <div class="alocacao-extra-titulo">📌 ${alocacaoEscolhida.length} de ${cotas} cotas alocadas. Escolha onde colocar a(s) ${cotasRestantes} cota(s) extra(s):</div>
+            <div class="alocacao-extra-opcoes">
+        `;
+        alocacaoEscolhida.forEach(a => {
+            const btnActive = grupoExtraEscolhido === a.grupo ? 'active' : '';
+            html += `<button type="button" class="btn-aloc-extra ${btnActive}" onclick="selecionarGrupoExtra('${a.grupo}')">${a.grupo}</button>`;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      }
+    }
+    
+    container.innerHTML = html;
+    validarEtapaDados();
+  }
+
+  function setModoDividir(dividir) {
+    modoDividir = dividir;
+    alocacaoEscolhida = [];
+    grupoExtraEscolhido = "";
+    renderizarSeletorGrupos();
+  }
+
+  function selecionarGrupo(nomeGrupo, disabled) {
+    if (disabled) return;
+    const cotas = parseInt(selectCotas.value, 10);
+    
+    if (cotas === 1 || !modoDividir) {
+      alocacaoEscolhida = [{ grupo: nomeGrupo, cotas: cotas }];
+    } else {
+      const idx = alocacaoEscolhida.findIndex(a => a.grupo === nomeGrupo);
+      if (idx >= 0) {
+        alocacaoEscolhida.splice(idx, 1);
+        if (grupoExtraEscolhido === nomeGrupo) grupoExtraEscolhido = "";
+      } else {
+        if (alocacaoEscolhida.length < cotas) {
+          alocacaoEscolhida.push({ grupo: nomeGrupo, cotas: 1 });
+        }
+      }
+    }
+    renderizarSeletorGrupos();
+  }
+
+  function selecionarGrupoExtra(nomeGrupo) {
+    grupoExtraEscolhido = nomeGrupo;
+    renderizarSeletorGrupos();
+  }
+
+  function calcularAlocacaoFinal() {
+    const cotas = parseInt(selectCotas.value, 10);
+    let finalAloc = JSON.parse(JSON.stringify(alocacaoEscolhida));
+    
+    if (cotas > 1 && modoDividir && finalAloc.length > 0) {
+      const alocadas = finalAloc.length;
+      if (alocadas < cotas) {
+        const diff = cotas - alocadas;
+        const target = grupoExtraEscolhido || finalAloc[0].grupo;
+        const targetObj = finalAloc.find(a => a.grupo === target);
+        if (targetObj) {
+            targetObj.cotas += diff;
+        }
+      }
+    }
+    return finalAloc;
+  }
+
+  function obterDivisaoTexto() {
+    const aloc = calcularAlocacaoFinal();
+    if (aloc.length === 1) {
+        return `Grupo Único (${aloc[0].grupo})`;
+    }
+    return aloc.map(a => `${a.grupo} (${a.cotas} cota${a.cotas > 1 ? 's' : ''})`).join(', ');
+  }
+
+  function obterGrupoDoJogo(indiceJogo) {
+    const aloc = calcularAlocacaoFinal();
+    let limite = 0;
+    for (let i = 0; i < aloc.length; i++) {
+        limite += aloc[i].cotas * 4;
+        if (indiceJogo < limite) {
+            return aloc[i].grupo;
+        }
+    }
+    return "Grupo";
+  }
+
+  function abrirModalExplicacao(event) {
+    if (event) event.stopPropagation();
+    modalExplicacao.classList.remove('hidden');
+  }
+
+  function fecharModalExplicacao() {
+    modalExplicacao.classList.add('hidden');
+  }
+
+  function fecharModalPeloFundo(event) {
+    if (event.target === modalExplicacao) {
+      fecharModalExplicacao();
+    }
+  }
+
+  function mascaraTelefone(input) {
+    let v = input.value.replace(/\D/g, "");
+    if (v.length > 11) v = v.substring(0, 11);
+    if (v.length > 10) {
+      v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+    } else if (v.length > 5) {
+      v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+    } else if (v.length > 2) {
+      v = v.replace(/^(\d{2})(\d{0,5})$/, "($1) $2");
+    } else if (v.length > 0) {
+      v = v.replace(/^(\d*)$/, "($1");
+    }
+    input.value = v;
+  }
+
+  async function tratarCliquesDesbloqueio() {
+    cliquesDesbloqueio++;
+    clearTimeout(timerCliques);
+
+    if (cliquesDesbloqueio >= 3) {
+      cliquesDesbloqueio = 0;
+      const senhaInformada = prompt("Autorização do organizador - Digite a senha para liberar o formulário:");
+      if (!senhaInformada) return;
+
+      const titulo = document.getElementById('tituloBloqueado');
+      const textoOriginal = titulo.textContent;
+      titulo.textContent = "Validando senha...";
+
+      try {
+        const urlValidacao = `${URL_APPS_SCRIPT}?acao=validarSenha&senha=${encodeURIComponent(senhaInformada.trim())}`;
+        const resp = await fetch(urlValidacao);
+        const res = await resp.json();
+
+        if (res && res.autorizada === true) {
+          localStorage.removeItem(STORAGE_KEY);
+          alert("✓ Trava removida com sucesso! O formulário foi liberado para um novo preenchimento.");
+          window.location.reload();
+        } else {
+          alert("❌ Senha incorreta ou expirada! Solicite o código atualizado ao organizador.");
+        }
+      } catch (e) {
+        alert("Erro de conexão ao validar senha. Verifique sua internet.");
+      } finally {
+        titulo.textContent = textoOriginal;
+      }
+    } else {
+      timerCliques = setTimeout(() => {
+        cliquesDesbloqueio = 0;
+      }, 1500);
+    }
+  }
+
+  function checarDesbloqueioPorLink() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('reset') === '1') {
+        localStorage.removeItem(STORAGE_KEY);
+        alert("Trava removida com sucesso!");
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    } catch(e) {}
+  }
+
+  function renderizarTelaBloqueada(dados) {
+    telaRegras.classList.add('hidden');
+    telaDados.classList.add('hidden');
+    telaPalpites.classList.add('hidden');
+    telaRevisao.classList.add('hidden');
+    telaBloqueada.classList.remove('hidden');
+
+    let html = `<strong>Participante:</strong> ${dados.nome}<br>`;
+    if (dados.telefone) html += `<strong>WhatsApp:</strong> ${dados.telefone}<br>`;
+    html += `<strong>Cotas:</strong> ${dados.cotas} (${dados.totalJogos} jogos)<br>`;
+    if (dados.divisaoTexto) html += `<strong>Grupos:</strong> ${dados.divisaoTexto}<br>`;
+    html += `<hr style="border:0; border-top:1px solid #ddd; margin:8px 0;">`;
+    dados.jogos.forEach((jg, i) => {
+      html += `<strong>J${i+1 < 10 ? '0' : ''}${i+1}:</strong> ${jg}<br>`;
+    });
+
+    document.getElementById('blocoResumoSalvo').innerHTML = html;
+  }
+
+  function checarEnvioPrevio() {
+    const dadosSalvos = localStorage.getItem(STORAGE_KEY);
+    if (dadosSalvos) {
+      try {
+        const parsed = JSON.parse(dadosSalvos);
+        renderizarTelaBloqueada(parsed);
+        return true;
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+    return false;
+  }
+
+  function copiarPix() {
+    const chave = document.getElementById('chavePix').innerText;
+    navigator.clipboard.writeText(chave).then(() => {
+      alert("Chave PIX copiada para a área de transferência!");
+    });
+  }
+
+  async function irParaDados() {
+    telaRegras.classList.add('hidden');
+    telaDados.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!vagasCarregadas) {
+      consultarVagasEmTempoReal();
+    }
+  }
+
+  function voltarParaRegras() {
+    telaDados.classList.add('hidden');
+    telaRegras.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validarEtapaDados() {
+    const nomeValido = inputNome.value.trim().length >= 3;
+    const telDigitos = inputTelefone.value.replace(/\D/g, "");
+    const telValido = telDigitos.length >= 10;
+    
+    let alocacaoValida = false;
+    const cotas = parseInt(selectCotas.value, 10);
+    if (alocacaoEscolhida.length > 0) {
+        if (!modoDividir || cotas === 1) {
+            alocacaoValida = true;
+        } else {
+            // No modo dividir, precisa ter pelo menos 1 grupo selecionado.
+            // A interface permite ter menos grupos do que cotas (as restantes vão para o grupo extra).
+            if (alocacaoEscolhida.length > 0) {
+                if (alocacaoEscolhida.length < cotas && !grupoExtraEscolhido) {
+                    alocacaoValida = false;
+                } else {
+                    alocacaoValida = true;
+                }
+            }
+        }
+    }
+    
+    btnAvancarPalpites.disabled = !(nomeValido && telValido && alocacaoValida);
+  }
+
+  function alterarQtdCotas() {
+    const cotas = parseInt(selectCotas.value, 10);
+    totalJogos = cotas * 4;
+
+    const novosJogos = Array.from({ length: totalJogos }, (_, i) => jogos[i] || new Set());
+    jogos = novosJogos;
+
+    if (indexAtual >= totalJogos) indexAtual = 0;
+
+    alocacaoEscolhida = [];
+    grupoExtraEscolhido = "";
+    if (cotas === 1) modoDividir = false;
+    renderizarSeletorGrupos();
+  }
+
+  async function irParaPalpites() {
+    const btn = document.getElementById('btnAvancarPalpites');
+    btn.disabled = true;
+    btn.textContent = "Aguarde! Verificando vagas...";
+
+    await consultarVagasEmTempoReal();
+
+    const nome = inputNome.value.trim();
+    const cotas = selectCotas.value;
+    const divisaoTexto = obterDivisaoTexto();
+    
+    document.getElementById('lblResumoParticipante').textContent = nome;
+    document.getElementById('lblResumoCotas').textContent = `${cotas} Cota(s) • ${totalJogos} Jogos (${divisaoTexto})`;
+
+    telaDados.classList.add('hidden');
+    telaPalpites.classList.remove('hidden');
+    renderizarPainel();
+    validarPalpites();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    btn.disabled = false;
+    btn.textContent = "Avançar para os Palpites →";
+  }
+
+  function voltarParaDados() {
+    telaPalpites.classList.add('hidden');
+    telaDados.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderizarGradeNumeros() {
+    gradeNumeros.innerHTML = "";
+    for (let i = 1; i <= 25; i++) {
+      const val = i < 10 ? '0' + i : '' + i;
+      const btn = document.createElement('button');
+      btn.textContent = val;
+      btn.className = 'num-btn';
+      btn.id = `btn-${val}`;
+      btn.onclick = () => alternarNumero(val);
+      gradeNumeros.appendChild(btn);
+    }
+  }
+
+  function renderizarPainel() {
+    const grupoAtual = obterGrupoDoJogo(indexAtual);
+    lblJogoAtual.textContent = `Jogo ${(indexAtual + 1 < 10 ? '0' : '') + (indexAtual + 1)} de ${(totalJogos < 10 ? '0' : '') + totalJogos}`;
+    lblIndicadorGrupo.textContent = `Cartela - ${grupoAtual}`;
+    
+    const cotas = parseInt(selectCotas.value, 10);
+    const alocFinal = calcularAlocacaoFinal();
+    const temDoisGrupos = alocFinal.length > 1;
+
+    gridAtalhos.innerHTML = "";
+    for (let i = 0; i < totalJogos; i++) {
+      const badge = document.createElement('div');
+      const completo = jogos[i].size === 15;
+      const g = temDoisGrupos ? ` (${obterGrupoDoJogo(i).replace('Grupo ', '')})` : "";
+      badge.className = `game-badge ${i === indexAtual ? 'active' : ''} ${completo ? 'done' : ''}`;
+      badge.textContent = `J${i + 1}${g}${completo ? ' ✓' : ''}`;
+      badge.onclick = () => irParaJogo(i);
+      gridAtalhos.appendChild(badge);
+
+      if (i === indexAtual) {
+        setTimeout(() => badge.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 50);
+      }
+    }
+
+    for (let i = 1; i <= 25; i++) {
+      const val = i < 10 ? '0' + i : '' + i;
+      const btn = document.getElementById(`btn-${val}`);
+      if (btn) {
+        if (jogos[indexAtual].has(val)) {
+          btn.classList.add('selected');
+        } else {
+          btn.classList.remove('selected');
+        }
+      }
+    }
+
+    contadorDezenas.textContent = `${jogos[indexAtual].size} / 15 marcadas`;
+  }
+
+  function alternarNumero(val) {
+    const setAtual = jogos[indexAtual];
+    if (setAtual.has(val)) {
+      setAtual.delete(val);
+    } else {
+      if (setAtual.size >= 15) return;
+      setAtual.add(val);
+    }
+    renderizarPainel();
+    validarPalpites();
+  }
+
+  function gerarSurpresinhaAtual() {
+    const setAtual = jogos[indexAtual];
+    setAtual.clear();
+    while (setAtual.size < 15) {
+      const rand = Math.floor(Math.random() * 25) + 1;
+      setAtual.add(rand < 10 ? '0' + rand : '' + rand);
+    }
+    renderizarPainel();
+    validarPalpites();
+  }
+
+  function gerarTodosSurpresinha() {
+    for (let i = 0; i < totalJogos; i++) {
+      jogos[i].clear();
+      while (jogos[i].size < 15) {
+        const rand = Math.floor(Math.random() * 25) + 1;
+        jogos[i].add(rand < 10 ? '0' + rand : '' + rand);
+      }
+    }
+    renderizarPainel();
+    validarPalpites();
+  }
+
+  function limparJogoAtual() {
+    jogos[indexAtual].clear();
+    renderizarPainel();
+    validarPalpites();
+  }
+
+  function irParaJogo(index) {
+    indexAtual = index;
+    renderizarPainel();
+  }
+
+  function proximoJogo() {
+    if (indexAtual < totalJogos - 1) {
+      indexAtual++;
+      renderizarPainel();
+    }
+  }
+
+  function jogoAnterior() {
+    if (indexAtual > 0) {
+      indexAtual--;
+      renderizarPainel();
+    }
+  }
+
+  function validarPalpites() {
+    const todosProntos = jogos.every(j => j.size === 15);
+    btnIrRevisao.disabled = !todosProntos;
+
+    if (!todosProntos) {
+      btnIrRevisao.textContent = `Preencha todos os jogos para revisar`;
+    } else {
+      btnIrRevisao.textContent = `Revisar ${totalJogos} Jogos`;
+    }
+  }
+
+  function abrirRevisao() {
+    const nome = inputNome.value.trim();
+    const telefone = inputTelefone.value.trim();
+    const cotas = selectCotas.value;
+    const divisaoTexto = obterDivisaoTexto();
+
+    let html = `<strong>Nome:</strong> ${nome}<br>`;
+    html += `<strong>WhatsApp:</strong> ${telefone}<br>`;
+    html += `<strong>Cotas:</strong> ${cotas} (${totalJogos} jogos)<br>`;
+    html += `<strong>Destino:</strong> ${divisaoTexto}<br>`;
+    html += `<strong>Total a Pagar:</strong> R$ ${(cotas * 15).toFixed(2).replace('.', ',')}<br><hr style="border:0; border-top:1px solid #ddd; margin:8px 0;">`;
+
+    jogos.forEach((setJogo, i) => {
+      const arr = Array.from(setJogo).sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+      const g = ` [${obterGrupoDoJogo(i)}]`;
+      html += `<strong>Jogo ${(i + 1 < 10 ? '0' : '') + (i + 1)}${g}:</strong> ${arr.join(' ')}<br>`;
+    });
+
+    document.getElementById('corpoRevisao').innerHTML = html;
+
+    telaPalpites.classList.add('hidden');
+    telaRevisao.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function voltarParaPalpites() {
+    telaRevisao.classList.add('hidden');
+    telaPalpites.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function confirmarEEnviarWhatsApp() {
+    const nome = inputNome.value.trim();
+    const telefone = inputTelefone.value.trim();
+    const cotas = selectCotas.value;
+    const divisaoTexto = obterDivisaoTexto();
+
+    let listaFormatadaJogos = [];
+
+    let msg = `*BOLÃO LOTOFÁCIL DA INDEPENDÊNCIA*\n`;
+    msg += `📅 *Sorteio:* 15/09/2026\n`;
+    msg += `👤 *Nome:* ${nome}\n`;
+    msg += `📱 *WhatsApp:* ${telefone}\n`;
+    msg += `🎟️ *Cotas:* ${cotas} (${totalJogos} jogos)\n`;
+    msg += `🎯 *Grupo(s):* ${divisaoTexto}\n`;
+    msg += `💰 *Valor:* R$ ${(cotas * 15).toFixed(2).replace('.', ',')}\n\n`;
+    msg += `*PALPITES CONFIRMADOS:*\n`;
+
+    jogos.forEach((setJogo, i) => {
+      const arr = Array.from(setJogo).sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+      const strJogo = arr.join(' ');
+      listaFormatadaJogos.push(strJogo);
+      const tagG = ` [${obterGrupoDoJogo(i)}]`;
+      msg += `*Jogo ${(i + 1 < 10 ? '0' : '') + (i + 1)}${tagG}:* ${strJogo}\n`;
+    });
+
+    msg += `\nSegue em anexo o comprovante do PIX para validação.`;
+
+    const dadosEnvio = {
+      token: tokenSessao,
+      nome: nome,
+      telefone: telefone,
+      cotas: parseInt(cotas, 10),
+      alocacao: calcularAlocacaoFinal(),
+      jogos: listaFormatadaJogos
+    };
+
+    try {
+      fetch(URL_APPS_SCRIPT, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dadosEnvio)
+      }).catch(err => console.warn("Envio assíncrono:", err));
+    } catch (e) {
+      console.warn("Disparo:", e);
+    }
+
+    const dadosParaSalvar = {
+      nome: nome,
+      telefone: telefone,
+      cotas: cotas,
+      divisaoTexto: divisaoTexto,
+      totalJogos: totalJogos,
+      jogos: listaFormatadaJogos,
+      dataEnvio: new Date().toISOString()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(dadosParaSalvar));
+
+    renderizarTelaBloqueada(dadosParaSalvar);
+
+    const destinoWhats = whatsappOrganizador || "5531987520694";
+    const url = `https://wa.me/${destinoWhats}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+
+  function abrirWhatsAppNovamente() {
+    const destinoWhats = whatsappOrganizador || "5531987520694";
+    window.open(`https://wa.me/${destinoWhats}`, '_blank');
+  }
+
+  checarDesbloqueioPorLink();
+
+  if (!checarEnvioPrevio()) {
+    telaRegras.classList.remove('hidden');
+    telaDados.classList.add('hidden');
+    telaPalpites.classList.add('hidden');
+    telaRevisao.classList.add('hidden');
+    telaBloqueada.classList.add('hidden');
+
+    renderizarGradeNumeros();
+    consultarVagasEmTempoReal();
+  }
+</script>
+
+</body>
+</html>
