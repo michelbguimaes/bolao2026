@@ -920,7 +920,15 @@
       const resp = await fetch(URL_APPS_SCRIPT);
       const data = await resp.json();
       if (data && data.status === "sucesso") {
-        gruposDisponiveis = data.grupos || [];
+        if (data.grupos && data.grupos.length > 0) {
+            gruposDisponiveis = data.grupos;
+        } else {
+            // Fallback para versão anterior do backend
+            gruposDisponiveis = [
+                { nome: "Grupo A", vagas: data.vagasA !== undefined ? data.vagasA : 30 },
+                { nome: "Grupo B", vagas: data.vagasB !== undefined ? data.vagasB : 30 }
+            ];
+        }
         vagasCarregadas = true;
         
         if (data.tokenSessao) {
@@ -943,12 +951,25 @@
       }
     } catch (e) {
       console.warn("Não foi possível carregar vagas em tempo real, usando padrão:", e);
+      // Fallback em caso de erro de conexão
+      gruposDisponiveis = [
+          { nome: "Grupo A", vagas: 30 },
+          { nome: "Grupo B", vagas: 30 }
+      ];
+      vagasCarregadas = true;
+      renderizarSeletorGrupos();
     }
   }
 
   function renderizarSeletorGrupos() {
     const container = document.getElementById('containerSeletorGrupos');
     if (!container) return;
+    
+    if (!vagasCarregadas) {
+        container.innerHTML = `<div style="text-align:center; padding:20px; color:#64748b; font-size:0.9rem;">⏳ Carregando grupos disponíveis...</div>`;
+        return;
+    }
+
     const cotas = parseInt(selectCotas.value, 10);
     
     let html = '';
